@@ -35,7 +35,7 @@ class _Session:
     turns: list[ProcessedTurn] = field(default_factory=list)
 
     def snapshot(self) -> SessionView:
-        # Minimal durable conversation state derived from confirmed turns.
+        # Minimal in-memory conversation state derived from confirmed turns.
         # "observed" is deliberate: the app cannot yet tell whether objections
         # have been resolved, and must not claim they are unresolved.
         state = ConversationState()
@@ -48,6 +48,7 @@ class _Session:
                         state.observed_objections.append(objection)
             else:
                 state.last_salesperson_message = turn.text
+        # Callers own snapshots; nested models must not alias stored history.
         return SessionView(
             session_id=self.session_id,
             status="ended" if self.ended_at is not None else "active",
@@ -57,7 +58,7 @@ class _Session:
             state=state,
             total_turns=len(self.turns),
             turns=self.turns,
-        )
+        ).model_copy(deep=True)
 
 
 class SessionStore:
@@ -68,12 +69,12 @@ class SessionStore:
     def create(self, request: CreateSession) -> SessionView:
         session = _Session(
             session_id=str(uuid4()),
-            product=request.product,
+            product=request.product.model_copy(deep=True),
             created_at=datetime.now(timezone.utc),
         )
         with self._lock:
             self._sessions[session.session_id] = session
-        return session.snapshot()
+            return session.snapshot()
 
     def _get(self, session_id: str) -> _Session:
         session = self._sessions.get(session_id)
@@ -99,7 +100,7 @@ class SessionStore:
                 analysis=analysis,
             )
             session.turns.append(processed)
-            return processed
+            return processed.model_copy(deep=True)
 
     def end(self, session_id: str) -> SessionView:
         with self._lock:

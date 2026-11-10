@@ -1,0 +1,374 @@
+{
+  "case_count": 60,
+  "dataset_sha256": "f79fe2718ccfdc0abefe267ee280a8757c6944032c42e7417df8218efc073589",
+  "errors": [
+    {
+      "case_id": "sales-v1-001",
+      "evidence_is_literal": true,
+      "expected_objections": [],
+      "expected_signal": "refusal",
+      "predicted_objections": [],
+      "predicted_signal": "neutral"
+    },
+    {
+      "case_id": "sales-v1-002",
+      "evidence_is_literal": true,
+      "expected_objections": [],
+      "expected_signal": "refusal",
+      "predicted_objections": [],
+      "predicted_signal": "neutral"
+    },
+    {
+      "case_id": "sales-v1-005",
+      "evidence_is_literal": true,
+      "expected_objections": [],
+      "expected_signal": "refusal",
+      "predicted_objections": [],
+      "predicted_signal": "neutral"
+    },
+    {
+      "case_id": "sales-v1-006",
+      "evidence_is_literal": true,
+      "expected_objections": [
+        "product_fit"
+      ],
+      "expected_signal": "refusal",
+      "predicted_objections": [
+        "product_fit"
+      ],
+      "predicted_signal": "neutral"
+    },
+    {
+      "case_id": "sales-v1-010",
+      "evidence_is_literal": true,
+      "expected_objections": [],
+      "expected_signal": "conditional_interest",
+      "predicted_objections": [],
+      "predicted_signal": "neutral"
+    },
+    {
+      "case_id": "sales-v1-011",
+      "evidence_is_literal": true,
+      "expected_objections": [],
+      "expected_signal": "conditional_interest",
+      "predicted_objections": [],
+      "predicted_signal": "neutral"
+    },
+    {
+      "case_id": "sales-v1-020",
+      "evidence_is_literal": true,
+      "expected_objections": [],
+      "expected_signal": "purchase_intent",
+      "predicted_objections": [],
+      "predicted_signal": "neutral"
+    },
+    {
+      "case_id": "sales-v1-024",
+      "evidence_is_literal": true,
+      "expected_objections": [],
+      "expected_signal": "purchase_intent",
+      "predicted_objections": [],
+      "predicted_signal": "neutral"
+    },
+    {
+      "case_id": "sales-v1-026",
+      "evidence_is_literal": true,
+      "expected_objections": [],
+      "expected_signal": "deferral",
+      "predicted_objections": [],
+      "predicted_signal": "neutral"
+    },
+    {
+      "case_id": "sales-v1-032",
+      "evidence_is_literal": true,
+      "expected_objections": [],
+      "expected_signal": "deferral",
+      "predicted_objections": [],
+      "predicted_signal": "neutral"
+    },
+    {
+      "case_id": "sales-v1-033",
+      "evidence_is_literal": true,
+      "expected_objections": [],
+      "expected_signal": "positive_interest",
+      "predicted_objections": [],
+      "predicted_signal": "neutral"
+    },
+    {
+      "case_id": "sales-v1-038",
+      "evidence_is_literal": true,
+      "expected_objections": [],
+      "expected_signal": "positive_interest",
+      "predicted_objections": [],
+      "predicted_signal": "neutral"
+    },
+    {
+      "case_id": "sales-v1-048",
+      "evidence_is_literal": true,
+      "expected_objections": [],
+      "expected_signal": "information_request",
+      "predicted_objections": [],
+      "predicted_signal": "neutral"
+    },
+    {
+      "case_id": "sales-v1-051",
+      "evidence_is_literal": true,
+      "expected_objections": [
+        "price"
+      ],
+      "expected_signal": "neutral",
+      "predicted_objections": [],
+      "predicted_signal": "neutral"
+    }
+  ],
+  "evidence_fragment_count": 47,
+  "joint_accuracy": 0.7666666666666667,
+  "literal_evidence_rate": 1.0,
+  "objection_exact_match": 0.9833333333333333,
+  "objection_macro_f1": 0.9777777777777779,
+  "objection_micro": {
+    "f1": 0.9743589743589743,
+    "fn": 1,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 0.95,
+    "support": 20,
+    "tp": 19
+  },
+  "objection_per_label": {
+    "cancellation_or_refund": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 4,
+      "tp": 4
+    },
+    "price": {
+      "f1": 0.8888888888888888,
+      "fn": 1,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.8,
+      "support": 5,
+      "tp": 4
+    },
+    "product_fit": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 4,
+      "tp": 4
+    },
+    "time_commitment": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 3,
+      "tp": 3
+    },
+    "trust": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 4,
+      "tp": 4
+    }
+  },
+  "predictor": "rules-v0.1",
+  "signal_accuracy": 0.7833333333333333,
+  "signal_macro_f1": 0.811031439602868,
+  "signal_per_label": {
+    "conditional_interest": {
+      "f1": 0.8571428571428571,
+      "fn": 2,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.75,
+      "support": 8,
+      "tp": 6
+    },
+    "deferral": {
+      "f1": 0.8571428571428571,
+      "fn": 2,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.75,
+      "support": 8,
+      "tp": 6
+    },
+    "information_request": {
+      "f1": 0.9333333333333333,
+      "fn": 1,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.875,
+      "support": 8,
+      "tp": 7
+    },
+    "neutral": {
+      "f1": 0.6486486486486487,
+      "fn": 0,
+      "fp": 13,
+      "precision": 0.48,
+      "recall": 1.0,
+      "support": 12,
+      "tp": 12
+    },
+    "positive_interest": {
+      "f1": 0.8571428571428571,
+      "fn": 2,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.75,
+      "support": 8,
+      "tp": 6
+    },
+    "purchase_intent": {
+      "f1": 0.8571428571428571,
+      "fn": 2,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.75,
+      "support": 8,
+      "tp": 6
+    },
+    "refusal": {
+      "f1": 0.6666666666666666,
+      "fn": 4,
+      "fp": 0,
+      "precision": 1.0,
+      "recall": 0.5,
+      "support": 8,
+      "tp": 4
+    }
+  },
+  "slices": {
+    "domain:course": {
+      "count": 30,
+      "joint_correct": 25
+    },
+    "domain:software": {
+      "count": 30,
+      "joint_correct": 21
+    },
+    "speaker:customer": {
+      "count": 56,
+      "joint_correct": 42
+    },
+    "speaker:salesperson": {
+      "count": 4,
+      "joint_correct": 4
+    },
+    "tag:background": {
+      "count": 1,
+      "joint_correct": 1
+    },
+    "tag:cancellation_question": {
+      "count": 1,
+      "joint_correct": 1
+    },
+    "tag:condition": {
+      "count": 8,
+      "joint_correct": 6
+    },
+    "tag:delay": {
+      "count": 5,
+      "joint_correct": 4
+    },
+    "tag:direct_intent": {
+      "count": 2,
+      "joint_correct": 2
+    },
+    "tag:hypothetical": {
+      "count": 2,
+      "joint_correct": 2
+    },
+    "tag:integration": {
+      "count": 5,
+      "joint_correct": 3
+    },
+    "tag:leading_condition": {
+      "count": 1,
+      "joint_correct": 1
+    },
+    "tag:mixed_signals": {
+      "count": 6,
+      "joint_correct": 6
+    },
+    "tag:multi_objection": {
+      "count": 2,
+      "joint_correct": 2
+    },
+    "tag:multiple_labels": {
+      "count": 18,
+      "joint_correct": 16
+    },
+    "tag:multitopic": {
+      "count": 2,
+      "joint_correct": 1
+    },
+    "tag:negation": {
+      "count": 2,
+      "joint_correct": 2
+    },
+    "tag:paraphrase": {
+      "count": 13,
+      "joint_correct": 0
+    },
+    "tag:positive_reaction": {
+      "count": 2,
+      "joint_correct": 2
+    },
+    "tag:question": {
+      "count": 7,
+      "joint_correct": 7
+    },
+    "tag:question_then_objection": {
+      "count": 1,
+      "joint_correct": 1
+    },
+    "tag:question_then_signal": {
+      "count": 5,
+      "joint_correct": 5
+    },
+    "tag:quotation": {
+      "count": 1,
+      "joint_correct": 1
+    },
+    "tag:speaker_boundary": {
+      "count": 4,
+      "joint_correct": 4
+    },
+    "tag:team": {
+      "count": 5,
+      "joint_correct": 0
+    },
+    "tag:topic_words": {
+      "count": 1,
+      "joint_correct": 1
+    },
+    "tag:transaction_request": {
+      "count": 4,
+      "joint_correct": 2
+    },
+    "tag:unicode": {
+      "count": 2,
+      "joint_correct": 2
+    }
+  },
+  "source_sha256": {
+    "coaching.py": "3eb1065e99101dee8d6f9e96d10055d35218ce7e6a9200bee631057bb833cbb9",
+    "detection.py": "6f786a5699127625040c3c8fbc6714d296499447dfa23a59100ea9f5c15052da",
+    "evaluation.py": "ffdcd3922c3e3ee5c58afcb86ebd6e04bcd00cd3bead9128be1ed966ac1419b7",
+    "schemas.py": "4dc4364d0f1342703b1ec569c27620dbdcbdd04bb9fe0f35d5f01ccac77a00ef",
+    "store.py": "d5ce3dabf40c3348a8e1c038f93ab3022d0c2844fb6f98fd1a0a2eafcd99c3ee"
+  }
+}
