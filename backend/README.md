@@ -2,7 +2,12 @@
 
 A **local text-based backend MVP** for a future real-time sales coach. It analyses simulated text turns for buyer signals and objections, recommends a next action when appropriate, and stores a session history in memory.
 
-**Scope:** This version processes text **not microphone audio**, uses **hand-written rules not a trained model**, and is **not safe to expose publicly**. No account login, consent framework, persistent database, or encrypted storage yet. Use only synthetic/test conversations.
+**Scope:** The default backend processes text with hand-written sales rules. An
+opt-in local speech model and Google Meet audio capture prototype are now
+available; see [voice setup and limitations](VOICE.md). The sales classifier is
+not a trained model. This application is **not safe to expose publicly**: there
+is no account login, consent framework, persistent database or encrypted storage.
+Use synthetic or explicitly authorised test conversations.
 
 ## Prerequisites
 
@@ -70,8 +75,10 @@ the server clears sessions; multiple workers do not share them.
   Store inputs and returned snapshots are copied to prevent external mutation.
 - Existing v1 response contracts retained, with no new production dependencies.
 
-Authentication, persistence, browser UI, audio and trained ML are outside this
-MVP. Changes to these decisions require agreement before implementation.
+Authentication, persistence and trained sales ML remain outside this MVP. The
+subsequently approved local transcription and Chrome capture phase is documented
+in [VOICE.md](VOICE.md); it adds separate endpoints without changing these text
+contracts. Changes to these decisions require agreement before implementation.
 
 ## API endpoints
 
@@ -154,10 +161,13 @@ The same `TurnInput` and `ProcessedTurn` schemas are used by the REST and WebSoc
 - Local in-memory history and basic conversation state (latest messages, observed concerns), simple end-session control, deterministic tests
 
 **Not implemented yet**
-- No speech-to-text, speaker diarisation, browser extension, or meeting integration
+- No speaker diarisation, camera-image analysis, or verified live Meet integration;
+  local speech recognition and a Chrome audio capture harness are opt-in prototypes
 - No large language model, trained classifier, or semantic retrieval
 - No authentication/authorization, persistence, privacy notices, audit logs or security hardening
-- No conversation-level resolution tracking, event de-duplication, or transcript partial/final handling yet
+- No conversation-level resolution tracking; text-turn APIs have no event
+  de-duplication. The separate transcript API supports revision/final handling
+  and idempotent final submissions and reviews
 - No seller-quality assessment, calibrated buying likelihood or outcome tracking
 
 **Important limitation:** Current phrase matching misses many paraphrases, can misread negation and irony, and does not understand conversation context. It is a software/integration baseline, not a validated sales intelligence model.
@@ -201,7 +211,8 @@ an independently reviewed estimate of real-world accuracy.
 2. Extend basic conversation state to track goals, answered questions and explicitly resolved concerns with unit tests.
 3. Expand independent evaluation coverage, keeping training and tuning data separate.
 4. Replace `app/detection.py` behind the existing contract with a trained classifier.
-5. Add the Chrome extension transcript source and privacy controls.
+5. Verify the Chrome audio capture harness on an authorised test call and measure
+   transcription and pause timing accuracy before expanding meeting integration.
 6. Replace in-memory storage with a permissioned, persistent data layer only when needed.
 
 ## Code map

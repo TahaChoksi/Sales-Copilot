@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Sales Copilot — local call capture",
+  "version": "0.1.0",
+  "minimum_chrome_version": "116",
+  "description": "User-started Google Meet audio capture for a local Sales Copilot backend.",
+  "permissions": ["activeTab", "tabCapture"],
+  "host_permissions": ["http://127.0.0.1:8000/*"],
+  "action": {"default_title": "Open local call capture"},
+  "background": {"service_worker": "build/background.js", "type": "module"},
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' http://127.0.0.1:8000 ws://127.0.0.1:8000"
+  }
+}

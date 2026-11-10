@@ -5,6 +5,9 @@ Run locally: python -m uvicorn app.main:app --reload --host 127.0.0.1
 
 from __future__ import annotations
 
+import os
+from pathlib import Path
+
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect, status
 from pydantic import ValidationError
 
@@ -13,15 +16,23 @@ from app.schemas import (
     ProcessedTurn, SessionView, TurnInput,
 )
 from app.store import ClosedSession, MissingSession, SessionStore, analyse_turn
+from app.speech_routes import speech_router
+from app.transcription import LocalTranscriber, Transcriber
 
 
-def create_app() -> FastAPI:
+def create_app(transcriber: Transcriber | None = None) -> FastAPI:
     app = FastAPI(
         title="AI Sales Copilot (Prototype)",
         version="0.1.0",
-        description="A local-only text conversation simulator and coaching baseline. Not production-ready.",
+        description="Local text coaching with optional local audio transcription. Not production-ready.",
     )
     store = SessionStore()
+    model_path = os.environ.get("SALES_COPILOT_SPEECH_MODEL")
+    if transcriber is None and model_path:
+        transcriber = LocalTranscriber(Path(model_path))
+    app.include_router(speech_router(
+        store, transcriber, os.environ.get("SALES_COPILOT_EXTENSION_ORIGIN"),
+    ))
 
     @app.get("/health")
     def health() -> dict[str, str]:

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sales Copilot · Local call capture</title><link rel="stylesheet" href="capture.css"></head>
+<body><main>
+<h1>Local call capture</h1>
+<p>Google Meet audio stays on this computer. This prototype does not capture camera images or save audio files.</p>
+<form id="capture-form">
+<label>Product name <input id="product" required maxlength="120" value="Demo software subscription"></label>
+<label>Supplied product facts, one per line <textarea id="facts" rows="3" placeholder="Use only facts you have checked"></textarea></label>
+<label>Who is speaking in the meeting tab?
+<select id="remote-role"><option value="">Unknown or multiple participants — no coaching</option><option value="customer">Customer — one-to-one call only</option><option value="salesperson">Salesperson</option></select></label>
+<label class="check"><input id="microphone" type="checkbox"> Include my microphone as the salesperson (use headphones)</label>
+<label class="check"><input id="coaching" type="checkbox"> Enable coaching for final transcripts that pass the heuristic quality checks</label>
+<p>Recognition may miss words or negation. Word scores are not calibrated accuracy. Review transcripts before acting on a suggestion.</p>
+<label class="check"><input id="consent" type="checkbox" required> Participants have agreed to this audio processing.</label>
+<button id="start" type="submit">Start capture</button><button id="stop" type="button" disabled>Stop capture</button>
+<button id="end-session" type="button" disabled>End session after review</button>
+</form>
+<p id="status" role="status">Stopped</p>
+<p id="origin"></p>
+<h2>Transcript and coaching</h2><ol id="transcripts" aria-live="polite"></ol>
+<h2>Timing observations</h2><p>Word gaps are alignment estimates. Low-energy intervals measure quiet audio, which may also be mute, noise suppression or a connection issue. They do not establish hesitation or buying intent.</p>
+<ol id="pauses"></ol>
+</main><script type="module" src="build/capture.js"></script></body></html>
